@@ -2,14 +2,28 @@
 #define __CLOCK_H
 
 #include <string>
-
-class StateInterface;
-typedef StateInterface* State;
+#include "StateInterface.h"
+#include "CurrentTimeState.h"
+#include "SetHourState.h"
+#include "SetMinuteState.h"
 
 class Clock {
  private:
   State state;
  public:
+
+  /// default constructor called if not specifying clock state, defaults to CurrentTimeState
+  Clock();
+
+  /// constructor for Clock
+  /**
+    \param s the State of the Clock being initialized
+  */
+  Clock(State s);
+
+  /// default destructor
+  ~Clock() {delete state;}
+
   /// called when the mode key is pressed
   void mode();
 

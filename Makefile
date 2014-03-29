@@ -10,20 +10,15 @@
 
 CFLAGS = -I /usr/include/allegro5 -std=c++0x
 LIBDIR = /usr/lib
-LNFLAGS = -lncurses
-COMMONOBJECTS =
+LNFLAGS = -lncurses -g
+COMMONOBJECTS = Clock.o CurrentTimeState.o SetHourState.o SetMinuteState.o
 OBJECTS = main.o
-#TESTOBJS = mainTest.o
 CC = g++
 
 all: clock
 
 clock: $(COMMONOBJECTS) $(OBJECTS)
 	$(CC) -L $(LIBDIR) -o $@ $^ $(LNFLAGS) 
-
-#tests: $(COMMONOBJECTS) $(TESTOBJS)
-	#$(CC) -L $(LIBDIR) -o $@ $^ $(LNFLAGS) 
-
 
 %.o : %.cc
 	g++ $(CFLAGS) -c $< -o $@
